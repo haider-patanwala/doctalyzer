@@ -1,5 +1,6 @@
 import React from 'react'
-import Ocr from './Ocr'
+import { Link } from 'react-router-dom';
+
 
 export default function card() {
   const style = {
@@ -14,11 +15,11 @@ export default function card() {
     <div style={{margin:"50px 0 0 0", width:"100vw", display:"flex", justifyContent:'center'}}>
       <div style={style}>
         <h1>Upload</h1>
-        <a href="">Click me</a>
+        <Link to="/ocr">Click Me</Link>
       </div>
       <div style={style}>
         <h1>Medical Reoprt</h1>
-        <button>Click Me</button>
+        <Link to="/medical">Click Me</Link>
       </div>
     </div>
   )

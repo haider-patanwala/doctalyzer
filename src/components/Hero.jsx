@@ -21,7 +21,7 @@ const Hero = () => {
 
 			<h1 className='head_text'>
 				<span className='orange_gradient '>Doctalyzer</span>
-				<br className='max-md:hidden' />
+				<br />
 				<span className='description'>Analyze Medical Reports</span>
 			</h1>
 			<h2 className='desc'>

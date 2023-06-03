@@ -1,5 +1,6 @@
 import { useState } from "react"
 import Nav from "./Nav"
+import Footer from "./Footer"
 
 const API_KEY = "AIzaSyDXoH4e5JOoH3s6dQMMceYvhhygHSqfVWs"
 
@@ -164,6 +165,7 @@ export default function Ocr() {
 					</div>
 				</div>
 			</div>
+			<Footer />
 		</>
 	)
 }

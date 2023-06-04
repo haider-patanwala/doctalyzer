@@ -5,7 +5,7 @@ import Footer from "./Footer"
 
 const openai = new OpenAIApi(
 	new Configuration({
-		apiKey: "--------------",
+		apiKey: "-------------",
 	})
 )
 
@@ -24,6 +24,12 @@ function Medicalreport() {
 
 	const handleInputChange = (event) => {
 		setInputMessage(event.target.value)
+	}
+
+	const handleMedicineClick = (event) => {
+		const medicineName = event.target.innerHTML
+		setInputMessage(medicineName)
+		convertImageToText()
 	}
 
 	const convertImageToText = async () => {
@@ -63,26 +69,45 @@ function Medicalreport() {
 				</h2>
 
 				<div className='flex flex-row justify-around mt-5'>
-					<div className='rounded-full bg-white border-solid border-2 border-orange-500 px-5 mx-2'>
+					<div
+						onClick={handleMedicineClick}
+						className='cursor-pointer hover rounded-full bg-white border-solid border-2 border-orange-500 px-5 mx-2'
+					>
 						Aspirin
 					</div>
-					<div className='rounded-full bg-white border-solid border-2 border-orange-500 px-5 mx-2'>
+					<div
+						onClick={handleMedicineClick}
+						className='cursor-pointer hover rounded-full bg-white border-solid border-2 border-orange-500 px-5 mx-2'
+					>
 						DOLO 65
 					</div>
-					<div className='rounded-full bg-white border-solid border-2 border-orange-500 px-5 mx-2'>
+					<div
+						onClick={handleMedicineClick}
+						className='cursor-pointer hover rounded-full bg-white border-solid border-2 border-orange-500 px-5 mx-2'
+					>
 						Crocin
 					</div>
-					<div className='rounded-full bg-white border-solid border-2 border-orange-500 px-5 mx-2'>
+					<div
+						onClick={handleMedicineClick}
+						className='cursor-pointer hover rounded-full bg-white border-solid border-2 border-orange-500 px-5 mx-2'
+					>
 						i-Pill
 					</div>
 				</div>
 				<div className='flex flex-row justify-around mt-5'>
-					<div className='rounded-full bg-white border-solid border-2 border-orange-500 px-5 mx-2'>
+					<div
+						onClick={handleMedicineClick}
+						className='cursor-pointer hover rounded-full bg-white border-solid border-2 border-orange-500 px-5 mx-2'
+					>
 						Combiflame
 					</div>
-					<div className='rounded-full bg-white border-solid border-2 border-orange-500 px-5 mx-2'>
+					<div
+						onClick={handleMedicineClick}
+						className='cursor-pointer hover rounded-full bg-white border-solid border-2 border-orange-500 px-5 mx-2'
+					>
 						Diclofanac
 					</div>
+					<div>1M+ Medicines</div>
 				</div>
 			</div>
 
@@ -110,21 +135,31 @@ function Medicalreport() {
 			<div>
 				{error && <p>{error}</p>}
 				{resultJSON && (
-					<div>
-						<h3>Uses:</h3>
-						<p>{resultJSON.Uses}</p>
+					<div className='max-w-2xl'>
+						<div className='my-5 p-5 rounded-md border bg-white'>
+							<h3 className='font-semibold text-lg mb-1'>Uses:</h3>
+							<p>{resultJSON.Uses}</p>
+						</div>
 
-						<h3>Dosage:</h3>
-						<p>{resultJSON.Dosage}</p>
+						<div className='my-5 p-5 rounded-md border bg-white'>
+							<h3 className='font-semibold text-lg mb-1'>Dosage:</h3>
+							<p>{resultJSON.Dosage}</p>
+						</div>
 
-						<h3>Side Effects:</h3>
-						<p>{resultJSON["Side Effects"]}</p>
+						<div className='my-5 p-5 rounded-md border bg-white'>
+							<h3 className='font-semibold text-lg mb-1'>Side Effects:</h3>
+							<p>{resultJSON["Side Effects"]}</p>
+						</div>
 
-						<h3>Route:</h3>
-						<p>{resultJSON.Route}</p>
+						<div className='my-5 p-5 rounded-md border bg-white'>
+							<h3 className='font-semibold text-lg mb-1'>Route:</h3>
+							<p>{resultJSON.Route}</p>
+						</div>
 
-						<h3>Disclaimer:</h3>
-						<p>{resultJSON.Disclaimer}</p>
+						<div className='my-5 p-5 rounded-md border bg-white'>
+							<h3 className='font-semibold text-lg mb-1'>Disclaimer:</h3>
+							<p>{resultJSON.Disclaimer}</p>
+						</div>
 					</div>
 				)}
 			</div>

@@ -3,15 +3,15 @@ import Footer from "./Footer"
 import Nav from "./Nav"
 import { Configuration, OpenAIApi } from "openai"
 
-const API_KEY = "AIzaSyDXoH4e5JOoH3s6dQMMceYvhhygHSqfVWs"
+const API_KEY = "---------------"
 const openai = new OpenAIApi(
 	new Configuration({
-		apiKey: "-------------",
+		apiKey: "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",
 	})
 )
 
 const answer =
-	"give patient name , age , and report  summary  in 20 words in very simple term in an javascript array these three info should be in 1,2 and 3 index position ofan array"
+	"give patient name , age , and report  summary  in 20 words in very simple term"
 
 export default function Ocr() {
 	const [image, setImage] = useState(null)

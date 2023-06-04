@@ -1,95 +1,51 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { Configuration, OpenAIApi } from "openai"
 import Nav from "./Nav"
 import Footer from "./Footer"
-// export default function Medicalreport() {
-// 	return (
-// 		<>
-// 			<div className='w-full flex justify-center items-center flex-col'>
-// 				<Nav />
-// 			</div>
-// 			<div>
-// 				<form className='relative w-full flex-center'>
-// 					<input
-// 						type='text'
-// 						placeholder='Search for a tag or a username'
-// 						// value={searchText}
-// 						// onChange={handleSearchChange}
-// 						required
-// 						className='search_input peer w-96 p-3 border-1'
-// 					/>
-// 				</form>
-// 			</div>
-// 			<Footer />
-// 		</>
-// 	)
-// }
-//
-
-// 	return (
-// 		<div>
-// 			<input
-// 				type='text'
-// 				className='search_input peer w-96 p-3 border-1'
-// 				value={txt}
-// 				onChange={handleInputChange}
-// 			/>
-// 			<button onClick={handleGenerateList}>Generate Medicine List</button>
-
-// 			{error && <p>Error: {error}</p>}
-
-// 			{Medicalreport.length > 0 && (
-// 				<ul>
-// 					{Medicalreport.map((medicine, index) => (
-// 						<li key={index}>{medicine}</li>
-// 					))}
-// 				</ul>
-// 			)}
-// 		</div>
-// 	)
-// }
-
-// export default Medicalreport
 
 const openai = new OpenAIApi(
 	new Configuration({
-		apiKey: "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",
+		apiKey: "--------------",
 	})
 )
 
-const messa = `Generate a JSON representation of about result. The JSON should include the following fields:
-"Chemical Composition", 
+const message = `Generate a JSON representation of about result. The JSON should include the following fields: 
 "Uses", 
 "Dosage", 
 "Side Effects", 
-"Route" `
+"Route",
+"Disclaimer" `
 
 function Medicalreport() {
-	const [responseContent, setResponseContent] = useState("")
 	const [inputMessage, setInputMessage] = useState("")
+	const [isGenerating, setIsGenerating] = useState(false)
+	const [resultJSON, setResultJSON] = useState(null)
+	const [error, setError] = useState(null)
 
 	const handleInputChange = (event) => {
 		setInputMessage(event.target.value)
 	}
 
-	const handleSendMessage = async () => {
+	const convertImageToText = async () => {
+		setIsGenerating(true)
+		setError(null)
 		try {
 			const response = await openai.createChatCompletion({
 				model: "gpt-3.5-turbo",
 				messages: [
 					{ role: "system", content: "You" },
-					{ role: "user", content: inputMessage + messa },
+					{ role: "user", content: inputMessage + message },
 				],
 			})
-			setResponseContent(response.data.choices[0].message.content)
+			const content = response.data.choices[0].message.content
+			console.log("Content:", content)
+			setResultJSON(JSON.parse(content))
 		} catch (error) {
 			console.error(error)
+			setError("Error occurred during generation")
 		}
+		setIsGenerating(false)
 	}
-
-	useEffect(() => {
-		handleSendMessage()
-	}, [])
 
 	return (
 		<>
@@ -141,15 +97,37 @@ function Medicalreport() {
 					onChange={handleInputChange}
 				/>
 				<button
-					style={{ backgroundColor: "#eb5c0c" }}
-					onClick={handleSendMessage}
+					style={{ backgroundColor: isGenerating ? "grey" : "#eb5c0c" }}
+					onClick={convertImageToText}
 					className='my-5 border-gray-200 text-white flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline-none'
+					disabled={isGenerating}
 				>
-					Send
+					<p className='text-sm'>
+						{isGenerating ? "Generating..." : "Generate report"}
+					</p>
 				</button>
 			</div>
-			<h1>{responseContent}</h1>
-			{console.log(responseContent)}
+			<div>
+				{error && <p>{error}</p>}
+				{resultJSON && (
+					<div>
+						<h3>Uses:</h3>
+						<p>{resultJSON.Uses}</p>
+
+						<h3>Dosage:</h3>
+						<p>{resultJSON.Dosage}</p>
+
+						<h3>Side Effects:</h3>
+						<p>{resultJSON["Side Effects"]}</p>
+
+						<h3>Route:</h3>
+						<p>{resultJSON.Route}</p>
+
+						<h3>Disclaimer:</h3>
+						<p>{resultJSON.Disclaimer}</p>
+					</div>
+				)}
+			</div>
 			<Footer />
 		</>
 	)

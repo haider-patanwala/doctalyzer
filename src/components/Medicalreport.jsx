@@ -5,7 +5,7 @@ import Footer from "./Footer"
 
 const openai = new OpenAIApi(
 	new Configuration({
-		apiKey: "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",
+		apiKey: "--------------------",
 	})
 )
 

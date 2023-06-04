@@ -3,10 +3,10 @@ import Footer from "./Footer"
 import Nav from "./Nav"
 import { Configuration, OpenAIApi } from "openai"
 
-const API_KEY = "AIzaSyDXoH4e5JOoH3s6dQMMceYvhhygHSqfVWs"
+const API_KEY = "---------------"
 const openai = new OpenAIApi(
 	new Configuration({
-		apiKey: "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",
+		apiKey: "--------------------",
 	})
 )
 

@@ -5,7 +5,7 @@ import Footer from "./Footer"
 
 const openai = new OpenAIApi(
 	new Configuration({
-		apiKey: "-----------------------",
+		apiKey: "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",
 	})
 )
 
@@ -113,18 +113,18 @@ function Medicalreport() {
 
 			{/* //////Hero Ends */}
 
-			<div className='flex flex-col'>
+			<div className='flex flex-col w-full items-center justify-center'>
 				<input
 					placeholder='Search for a medicine'
 					type='text'
-					className='w-96 p-3 rounded-md border'
+					className='w-full p-5 rounded-full border max-w-2xl '
 					value={inputMessage}
 					onChange={handleInputChange}
 				/>
 				<button
 					style={{ backgroundColor: isGenerating ? "grey" : "#eb5c0c" }}
 					onClick={convertImageToText}
-					className='my-5 border-gray-200 text-white flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline-none'
+					className='my-5 border-gray-200 text-white flex h-10 w-full max-w-2xl items-center justify-center rounded-md border text-sm transition-all focus:outline-none'
 					disabled={isGenerating}
 				>
 					<p className='text-sm'>

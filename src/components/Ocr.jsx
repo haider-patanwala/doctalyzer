@@ -1,33 +1,55 @@
-import { useState } from "react"
-import Nav from "./Nav"
+import React, { useState } from "react"
 import Footer from "./Footer"
+import Nav from "./Nav"
+import { Configuration, OpenAIApi } from "openai"
 
 const API_KEY = "AIzaSyDXoH4e5JOoH3s6dQMMceYvhhygHSqfVWs"
+const openai = new OpenAIApi(
+	new Configuration({
+		apiKey: "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",
+	})
+)
+
+const answer =
+	"give patient name , age , and report  summary  in 20 words in very simple term in an javascript array these three info should be in 1,2 and 3 index position ofan array"
 
 export default function Ocr() {
 	const [image, setImage] = useState(null)
 	const [text, setText] = useState("")
 	const [result, setResult] = useState("")
 	const [isLoading, setIsLoading] = useState(false)
+	const [responseContent, setResponseContent] = useState("")
+	const [isGenerating, setIsGenerating] = useState(false)
 
-	// Convert the image to text using Google Cloud Vision API
 	const convertImageToText = async () => {
 		event.preventDefault()
 		try {
 			setIsLoading(true)
+			setIsGenerating(true)
 			const base64Image = await convertImageToBase64(image)
 			const extractedText = await analyzeImage(base64Image)
 			console.log(extractedText) // Log the extracted text
 			setText(extractedText)
 			setResult(extractedText)
+			const response = await handleSendMessage(extractedText)
+			if (
+				response &&
+				response.data &&
+				response.data.choices &&
+				response.data.choices.length > 0
+			) {
+				setResponseContent(response.data.choices[0]?.message?.content)
+			} else {
+				console.error("Invalid response format")
+			}
 		} catch (err) {
 			console.log(err)
 		} finally {
 			setIsLoading(false)
+			setIsGenerating(false)
 		}
 	}
 
-	// Convert the image to base64 format
 	const convertImageToBase64 = (image) => {
 		return new Promise((resolve, reject) => {
 			const reader = new FileReader()
@@ -37,7 +59,6 @@ export default function Ocr() {
 		})
 	}
 
-	// Analyze the image using Google Cloud Vision API
 	const analyzeImage = (base64Image) => {
 		const body = JSON.stringify({
 			requests: [
@@ -75,7 +96,22 @@ export default function Ocr() {
 			})
 	}
 
-	// Handle image change event
+	const handleSendMessage = async (message) => {
+		try {
+			const response = await openai.createChatCompletion({
+				model: "gpt-3.5-turbo",
+				messages: [
+					{ role: "system", content: "You" },
+					{ role: "user", content: message + answer },
+				],
+			})
+
+			return response
+		} catch (error) {
+			console.error(error)
+		}
+	}
+
 	const handleChangeImage = (event) => {
 		const selectedImage = event.target.files[0]
 		setImage(selectedImage)
@@ -140,27 +176,36 @@ export default function Ocr() {
 					</div>
 
 					<button
+						style={{ backgroundColor: isGenerating ? "grey" : "#eb5c0c" }}
 						onClick={convertImageToText}
-						className='border-gray-200 bg-gray-100 text-gray-400 flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline-none'
+						className='border-gray-200 text-white flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline-none'
+						disabled={isGenerating} // Disable the button while generating
 					>
-						<p className='text-sm'>Generate report</p>
+						<p className='text-sm'>
+							{isGenerating ? "Generating..." : "Generate report"}
+						</p>
 					</button>
 				</form>
 			</div>
 
 			<div className='mt-10'>
-				<div className='flex flex-col items-center w-full max-w-xl p-12 mx-auto rounded-lg shadow-xl dark:bg-white/10 bg-white/30 ring-1 ring-gray-900/5 backdrop-blur-lg'>
+				<div
+					className='flex flex-col items-center w-full max-w-xl p-12 mx-auto rounded-lg shadow-xl dark:bg-white/10 bg-white/30 ring-1 ring-gray-900/5 backdrop-blur-lg'
+					style={{ padding: "0" }}
+				>
 					<div className='mx-20'>
 						<div className='space-y-1 mb-4 mx-20'>
 							<h2 className='text-xl font-semibold'>Interpreted Report</h2>
 						</div>
-						{/* <label
-              htmlFor="image-upload"
-              className="group relative mt-2 flex h-72 cursor-pointer flex-col items-center justify-center rounded-md border border-gray-300 bg-white shadow-sm transition-all hover:bg-gray-50"
-            ></label> */}
 						<div className='stored-result'>
 							{/* Display a loading message while the result is being processed */}
-							{isLoading ? <p>Wait for a few seconds...</p> : <p>{result}</p>}
+							{isLoading ? (
+								<p>Wait for a few seconds...</p>
+							) : (
+								<p style={{ width: "100%", textAlign: "justify" }}>
+									{responseContent}
+								</p>
+							)}
 						</div>
 					</div>
 				</div>

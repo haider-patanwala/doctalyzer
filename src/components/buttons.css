@@ -5,3 +5,6 @@
 
 	width: 8rem;
 }
+.button-img:hover{
+	transition: ease-in;
+}

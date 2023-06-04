@@ -15,7 +15,7 @@ const Hero = () => {
 					<span className='description'>Analyze Medical Reports</span>
 				</h1>
 				<h2 className='desc'>
-					Doctalyzer analyzes medical reports, empowering you to make informed
+					The tool to analyze medical reports, empowering you to make informed
 					decisions about your health journey.
 				</h2>
 			</div>

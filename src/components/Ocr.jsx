@@ -3,7 +3,7 @@ import Footer from "./Footer"
 import Nav from "./Nav"
 import { Configuration, OpenAIApi } from "openai"
 
-const API_KEY = "AIzaSyDXoH4e5JOoH3s6dQMMceYvhhygHSqfVWs"
+const API_KEY = "---------------"
 const openai = new OpenAIApi(
 	new Configuration({
 		apiKey: "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",
@@ -128,7 +128,7 @@ export default function Ocr() {
 						<div className='space-y-1 mb-4'>
 							<h2 className='text-xl font-semibold'>Upload a file</h2>
 							<p className='text-sm text-gray-500'>
-								Accepted formats: .png, .jpg, .gif, .mp4
+								Accepted formats: .png, .jpg
 							</p>
 						</div>
 						<label
@@ -138,7 +138,7 @@ export default function Ocr() {
 							<div className='absolute z-[5] h-full w-full rounded-md'>
 								<div className='absolute z-[3] flex h-full w-full flex-col items-center justify-center rounded-md px-10 transition-all bg-white opacity-100 hover:bg-gray-50'>
 									<svg
-										className='scale-100 h-7 w-7 text-gray-500 transition-all duration-75 group-hover:scale-110 group-active:scale-95'
+										className='scale-100 h-5 w-5 text-gray-500 transition-all duration-75 group-hover:scale-110 group-active:scale-95'
 										xmlns='http://www.w3.org/2000/svg'
 										width='24'
 										height='24'
@@ -194,8 +194,8 @@ export default function Ocr() {
 					style={{ padding: "0" }}
 				>
 					<div className='mx-20'>
-						<div className='space-y-1 mb-4 mx-20'>
-							<h2 className='text-xl font-semibold'>Interpreted Report</h2>
+						<div className='space-y-5 mb-4 mt-4 mx-20'>
+							<h2 className='text-xl font-semibold '>Interpreted Report</h2>
 						</div>
 						<div className='stored-result'>
 							{/* Display a loading message while the result is being processed */}

@@ -13,7 +13,7 @@ const Nav = () => {
 			<button
 				type='button'
 				onClick={() =>
-					window.open("https://github.com/TidbitsJS/Summize", "_blank")
+					window.open("https://github.com/open-xyz/doctalyzer", "_blank")
 				}
 				className='black_btn'
 			>

@@ -5,7 +5,7 @@ import Footer from "./Footer"
 
 const openai = new OpenAIApi(
 	new Configuration({
-		apiKey: "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",
+		apiKey: "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",
 	})
 )
 
@@ -107,7 +107,7 @@ function Medicalreport() {
 					>
 						Diclofanac
 					</div>
-					<div className="orange_gradient px-2 pt-1 text-sm">1M+ Medicines</div>
+					<div className='orange_gradient px-2 pt-1 text-sm'>1M+ Medicines</div>
 				</div>
 			</div>
 

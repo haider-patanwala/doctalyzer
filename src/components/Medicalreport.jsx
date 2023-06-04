@@ -107,7 +107,7 @@ function Medicalreport() {
 					>
 						Diclofanac
 					</div>
-					<div>1M+ Medicines</div>
+					<div className="orange_gradient px-2 pt-1 text-sm">1M+ Medicines</div>
 				</div>
 			</div>
 

@@ -94,6 +94,44 @@ function Medicalreport() {
 	return (
 		<>
 			<Nav />
+
+			{/* Hero Section */}
+			<div className='w-full flex justify-center items-center flex-col mb-10'>
+				<h1 className='head_text'>
+					<span className='orange_gradient '>Doctalyzer</span>
+					<br />
+					{/* <span className='description'>Analyze Medical Reports</span> */}
+				</h1>
+				<h2 className='desc'>
+					This tool will tell you about the usage and information of medicines.
+				</h2>
+
+				<div className='flex flex-row justify-around mt-5'>
+					<div className='rounded-full bg-white border-solid border-2 border-orange-500 px-5 mx-2'>
+						Aspirin
+					</div>
+					<div className='rounded-full bg-white border-solid border-2 border-orange-500 px-5 mx-2'>
+						DOLO 65
+					</div>
+					<div className='rounded-full bg-white border-solid border-2 border-orange-500 px-5 mx-2'>
+						Crocin
+					</div>
+					<div className='rounded-full bg-white border-solid border-2 border-orange-500 px-5 mx-2'>
+						i-Pill
+					</div>
+				</div>
+				<div className='flex flex-row justify-around mt-5'>
+					<div className='rounded-full bg-white border-solid border-2 border-orange-500 px-5 mx-2'>
+						Combiflame
+					</div>
+					<div className='rounded-full bg-white border-solid border-2 border-orange-500 px-5 mx-2'>
+						Diclofanac
+					</div>
+				</div>
+			</div>
+
+			{/* //////Hero Ends */}
+
 			<div className='flex flex-col'>
 				<input
 					placeholder='Search for a medicine'
@@ -103,8 +141,9 @@ function Medicalreport() {
 					onChange={handleInputChange}
 				/>
 				<button
+					style={{ backgroundColor: "#eb5c0c" }}
 					onClick={handleSendMessage}
-					className='my-5 border-gray-200 bg-orange text-gray-400 flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline-none'
+					className='my-5 border-gray-200 text-white flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline-none'
 				>
 					Send
 				</button>

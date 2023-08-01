@@ -16,19 +16,18 @@ Doctalyzer offers the following features:
 
 ## Getting Started
 
-To get started with Doctalyzer, simply navigate to the following `<a href="https://doctalyzer.vercel.app/">`link `</a>`.
-`<br />`
+To get started with Doctalyzer, simply navigate to the following [link](https://doctalyzer.vercel.app).
 You can then upload your medical reports and receive an interpretation in simple language.
 
 ## Installation
 
-1. Clone the Doctalyzer `<a href="https://github.com/open-xyz/doctalyzer">`repository `<a/>` to your local machine
+1. Clone the Doctalyzer [repository](https://github.com/haider-patanwala/doctalyzer) to your local machine
 2. Install the required dependencies by running npm install.
 3. Start the server by running npm start.
 
 ## Usage
 
-1. Navigate to the Doctalyzer `<a href="https://doctalyzer.vercel.app/">`web application `<a/>`.
+1. Navigate to the Doctalyzer [web application](https://doctalyzer.vercel.app).
 2. Upload your file by clicking on the choose file button.
 3. Click on the submit button and Wait for the text extraction and natural language interpretation to complete.
 4. Read the interpretation to better understand your medical report.
@@ -36,8 +35,8 @@ You can then upload your medical reports and receive an interpretation in simple
 ## License
 
 Doctalyzer is licensed under the [![License: MIT](https://badgen.net/github/license/open-xyz/doctalyzer)](https://github.com/open-xyz/doctalyzer/blob/main/LICENSE)
-. See `<a href="https://github.com/open-xyz/doctalyzer/blob/main/LICENSE">`LICENSE `<a/>` for more information.
+. See [LICENSE](https://github.com/open-xyz/doctalyzer/blob/main/LICENSE) for more information.
 
 ## Contributing
 
-If you're interested in contributing to Doctalyzer, please see `<a href="https://github.com/open-xyz/doctalyzer/blob/main/CONTRIBUTING.md">`CONTRIBUTING.md `<a/>` for guidelines on how to get started.
+If you're interested in contributing to Doctalyzer, please see [CONTRIBUTING.md](https://github.com/open-xyz/doctalyzer/blob/main/CONTRIBUTING.md) for guidelines on how to get started.
